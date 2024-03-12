@@ -7,22 +7,22 @@ const initalGameBoard = [
 ];
 
 //pass on switch player function to props
-export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
-  const [gameBoard, setGameBoard] = useState(initalGameBoard);
+export default function GameBoard({ onSelectSquare }) {
+  // const [gameBoard, setGameBoard] = useState(initalGameBoard);
 
-  function handleSelectSquare(rowIndex, colIndex) {
-    setGameBoard((preGameBoard) => {
-      //array of object
-      const updatedBoard = [
-        ...preGameBoard.map((innerArray) => [...innerArray]),
-      ];
-      updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
-      return updatedBoard;
-    });
+  // function handleSelectSquare(rowIndex, colIndex) {
+  //   setGameBoard((preGameBoard) => {
+  //     //array of object
+  //     const updatedBoard = [
+  //       ...preGameBoard.map((innerArray) => [...innerArray]),
+  //     ];
+  //     updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
+  //     return updatedBoard;
+  //   });
 
-    //switch player
-    onSelectSquare();
-  }
+  //   //switch player
+  //   onSelectSquare();
+  // }
 
   return (
     <ol id="game-board">
@@ -31,9 +31,7 @@ export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() => handleSelectSquare(rowIndex, colIndex)}>
-                  {playerSymbol}
-                </button>
+                <button onClick={onSelectSquare}>{playerSymbol}</button>
               </li>
             ))}
           </ol>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //initialName -> player1, player2
-export default function Player({ initialName, symbol }) {
+export default function Player({ initialName, symbol, isActive }) {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -21,12 +21,12 @@ export default function Player({ initialName, symbol }) {
   // if isEditing is true
   if (isEditing) {
     editablePlayerName = (
-      <input type="text" rquired value={playerName} onChange={handleChange} />
+      <input type="text" required value={playerName} onChange={handleChange} />
     );
   }
 
   return (
-    <li>
+    <li className={isActive ? "active" : undefined}>
       <span className="player">
         {editablePlayerName}
         <span className="player-symbol">{symbol}</span>

@@ -7,22 +7,15 @@ const initalGameBoard = [
 ];
 
 //pass on switch player function to props
-export default function GameBoard({ onSelectSquare }) {
-  // const [gameBoard, setGameBoard] = useState(initalGameBoard);
+export default function GameBoard({ onSelectSquare, turns }) {
+  //derived state from gameTurns
+  let gameBoard = initalGameBoard;
+  for (const turn of turns) {
+    const { square, player } = turn;
+    const { row, col } = square;
 
-  // function handleSelectSquare(rowIndex, colIndex) {
-  //   setGameBoard((preGameBoard) => {
-  //     //array of object
-  //     const updatedBoard = [
-  //       ...preGameBoard.map((innerArray) => [...innerArray]),
-  //     ];
-  //     updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
-  //     return updatedBoard;
-  //   });
-
-  //   //switch player
-  //   onSelectSquare();
-  // }
+    gameBoard[row][col] = player;
+  }
 
   return (
     <ol id="game-board">
